@@ -1,0 +1,8 @@
+<div >
+  <app-input (mapSearchBtnClick)="displayRoute($event)"  (mapGetTripDetsClick)="showMap($event)"
+             (originClicked)="addOriginPopulator($event)"
+             (destinationClicked)="addDestinationPopulator($event)"
+             (mapSimuBtnClick)="testSock($event)">
+  </app-input>
+</div>
+<div class="border border-dark" id="kolaMap"></div>

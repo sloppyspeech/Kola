@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>First Socket</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+    <script>
+        //
+        //
+        let socket=null;
+
+        function stopemit(){
+            console.log('Stop Emit Called');
+            socket.disconnect();
+        }
+        //
+        function startemit(){
+            if(socket){
+                console.log('Old Socket exists');
+                socket.disconnect();
+                socket=null;
+                socket=io('/coords');
+            }
+            else{
+                console.log('Creating coords socket');
+                socket=io('/coords');
+            }
+            console.log('Start Emit Called');
+            socket.emit('get_coords',{});
+            socket.on('currDate',(data)=>{
+                console.log(data.hour+':'+data.minutes+':'+data.seconds);
+                //console.log(data);
+                $('#myClock').text(data.hour+':'+data.minutes+':'+data.seconds);
+            });
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Start Emit" onclick="startemit();">
+    <input type="button" value="Stop Emit" onclick="stopemit();">
+    <br>
+    <h1><div id="myClock"></div></h1>
+</body>
+</html>

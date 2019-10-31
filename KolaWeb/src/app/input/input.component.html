@@ -1,0 +1,36 @@
+<form action="">
+  <div class="container-fluid" style="margin-top:70px;">
+    <div class="form-group row">
+      <label class="text-dark col-form-label col-sm-1" for="" data-toggle="tooltip" data-placement="top"
+        title="Enter Origin">Origin</label>
+      <input class="col-sm-3 form-control" type="search" name="origin" id="origin" [(ngModel)]="wc_origin"
+        list="dynaOrigin" (keyup)="getPlaces($event)" (change)="originDL(wc_origin)" />
+      <datalist id="dynaOrigin">
+        <select name="" id="">
+          <option *ngFor="let place of wc_ac_places" [value]="place.place_name">{{place.text}}</option>
+        </select>
+      </datalist>
+      <label class="text-dark col-form-label col-sm-1 mr-1" for="" data-toggle="tooltip" data-placement="right"
+        title="Enter Destination">Destination</label>
+
+      <input class="col-sm-3 form-control mr-1" type="search" name="destination" id="destination"
+        [(ngModel)]="wc_destination" list="dynaDestinations" (keyup)="getPlaces($event)"
+        (change)="destiDL(wc_destination)" />
+      <datalist id="dynaDestinations">
+        <select name="" id="">
+          <option *ngFor="let place of wc_ac_places" [value]="place.place_name">{{place.text}}{{place.place_name}}
+          </option>
+        </select>
+      </datalist>
+      <span class="ml-1 mr-1"> </span>
+      <button (click)="searchRoute()" class="btn btn-primary col-sm-1 mr-1" data-toggle="tooltip" data-placement="top"
+        title="Search Route">Search</button>
+      <button (click)="simuMovement()" class="btn col-sm-2 mr-1" [ngClass]="{
+                          'btn-info':simulateBtnName === 'Simulate Route',
+                          'btn-danger':simulateBtnName === 'Stop Simulation'
+                        }" data-toggle="tooltip" data-placement="top"
+        title="Simulate Route">{{simulateBtnName}}</button>
+
+    </div>
+  </div>
+</form>

@@ -1,0 +1,23 @@
+<!-- <div class="container-fluid" style="margin-top:70px; width: 650px;">
+    <div class="row">
+        <input class="col-sm-8 form-control" type="search" name="trip" id="trip" [(ngModel)]="wc-trip_srch"
+        list="dynaTrip" (keyup)="getPlaces($event)" (change)="originDL(wc_origin)" />
+    </div>
+</div>
+<div class="container-fluid row">
+    <div class="col-sm">
+        <br>
+    </div>
+</div> -->
+<div class="container-fluid row" style="margin-top:70px;">
+<ag-grid-angular 
+    #agGrid
+    style="width: 100%; height: 400px;" 
+    class="ag-theme-balham"
+    [rowData]="tripData | async" 
+    [columnDefs]="tripsColDefs"
+    animateRows
+    class="ag-theme-blue"
+    >
+</ag-grid-angular>
+</div>
